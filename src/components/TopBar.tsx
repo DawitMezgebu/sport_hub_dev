@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
@@ -214,9 +214,14 @@ export default function TopNav({
               }}
               className="flex h-9 items-center gap-2 rounded-full bg-white/15 px-3 text-sm text-white/90 hover:bg-white/20"
             >
-              <span className="grid h-4 w-4 place-items-center">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+              <img
+                src="https://play-lh.googleusercontent.com/gvlKi4GfJUgLh6HaVbM1wz_55NVngbs1Icn4t9oDzXIyxSLiT3401TrjAJNpeJs7mKtg1Tm2yTDFv_-mkWxh"
+                alt="UK Flag"
+                className="h-6 w-auto rounded-full"
+              />
+
               <span className="max-w-[180px] truncate">{leagueLabel}</span>
-              <span className="ml-1 text-white/70">▾</span>
+              <ChevronDown className="h-4 w-auto" />
             </button>
 
             {leagueOpen && (
@@ -262,7 +267,7 @@ export default function TopNav({
               )}
             >
               <span className="truncate">{seasonLabel}</span>
-              <span className="text-white/70">▾</span>
+              <ChevronDown className="h-4 w-auto" />
             </button>
 
             {seasonOpen && (
@@ -298,7 +303,10 @@ export default function TopNav({
             className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
             aria-label="Region"
           >
-            🏴󠁧󠁢󠁥󠁮󠁧󠁿
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/007/910/760/small/united-kingdom-flag-rounded-icon-uk-flag-union-jack-vector.jpg"
+              className="h-6 w-auto rounded-full"
+            />
           </button>
 
           <button

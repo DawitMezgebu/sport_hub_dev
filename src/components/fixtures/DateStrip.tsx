@@ -1,4 +1,4 @@
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 
 export default function DateBar() {
@@ -25,7 +25,7 @@ export default function DateBar() {
         onClick={() => changeDay(-1)}
         className="text-xl leading-none hover:text-white"
       >
-        ‹
+        <ChevronLeft className="h-4 w-auto" />
       </button>
 
       <div
@@ -50,7 +50,7 @@ export default function DateBar() {
         onClick={() => changeDay(1)}
         className="text-xl leading-none hover:text-white"
       >
-        ›
+        <ChevronRight className="h-4 w-auto" />
       </button>
     </div>
   );

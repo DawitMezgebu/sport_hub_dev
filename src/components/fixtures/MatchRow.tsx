@@ -97,7 +97,7 @@ export default function MatchRow({
                     "/placeholder-team.png";
                 }}
               />
-              <div className=" font-normal text-[12px] text-white/95">
+              <div className=" font-medium text-[12px] text-white">
                 {homeName}
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function MatchRow({
                     "/placeholder-team.png";
                 }}
               />
-              <div className="font-normal text-[12px] text-white/95">
+              <div className="font-medium text-[12px] text-white">
                 {awayName}
               </div>
             </div>
@@ -120,10 +120,10 @@ export default function MatchRow({
 
           <div className="flex items-center gap-6">
             <div className="text-right">
-              <div className=" text-[12px] font-normal text-white">
+              <div className=" text-[12px] font-medium text-white">
                 {homeScore}
-              </div>
-              <div className="mt-3 text-[12px] font-normal   text-white">
+              </div>  
+              <div className="mt-3 text-[12px] font-medium   text-white">
                 {awayScore}
               </div>
             </div>

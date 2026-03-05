@@ -5,6 +5,7 @@ import TopNav from "../components/TopBar";
 import { normalizeMatchEvents, type TimelineEvent } from "../utils/normalize";
 import TimelineRow from "../components/match/Timeline";
 import MatchTabs from "../components/match/MatchTabs";
+import { ArrowLeft } from "lucide-react";
 
 const FALLBACK_TIMELINE: TimelineEvent[] = [
   {
@@ -225,7 +226,7 @@ export default function MatchPage() {
                 className="grid h-10 w-10 place-items-center rounded-xl  "
                 aria-label="Back"
               >
-                ←
+                <ArrowLeft className="h-4 w-auto"/>
               </Link>
 
               <div className="text-sm text-white/70">{league}</div>

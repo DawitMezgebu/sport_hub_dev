@@ -37,7 +37,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* remove mobile tap highlight */
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -45,37 +44,4 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   scroll-behavior: smooth;
-}
-/* =============== Scrollbar (optional) =============== */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-/* =============== Reusable classes via Tailwind layer =============== */
-@layer components {
-  .page-container {
-    @apply mx-auto w-full max-w-[1180px] px-4 sm:px-6;
-  }
-
-  .card {
-    @apply rounded-2xl bg-[#1B1F2B] shadow-[0_10px_30px_rgba(0,0,0,0.25)];
-  }
-
-  .card-2 {
-    @apply rounded-2xl bg-[#1D1E2B] shadow-[0_10px_30px_rgba(0,0,0,0.25)];
-  }
-
-  .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFB3]/60;
-  }
 }

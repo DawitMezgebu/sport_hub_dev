@@ -1,3 +1,5 @@
+import { ChevronRight } from "lucide-react";
+
 export default function LeagueSection({
   title,
   children,
@@ -11,7 +13,7 @@ export default function LeagueSection({
         <div className="flex items-center justify-between pb-3 ">
           <div className="text-sm font-semibold text-white/90">{title}</div>
           <div className="grid h-9 w-9 place-items-center rounded-lg hover:bg-white/10">
-            <span className="text-lg text-white/70">›</span>
+            <ChevronRight className="h-4 w-auto" />
           </div>
         </div>
 
