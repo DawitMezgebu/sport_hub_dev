@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { PATHS } from "./paths";
 import FixturesPage from "../pages/FixturesPage";
 import MatchPage from "../pages/MatchPage";
-import NotFound from "../components/NotFound";
-import UnderConstructionPage from "../components/UnderConstruction";
+import NotFound from "../pages/NotFound";
+import UnderConstructionPage from "../pages/underconstruction";
 
 export const router = createBrowserRouter([
   {

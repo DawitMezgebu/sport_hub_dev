@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TopNav from "./TopBar";
+import TopNav from "../components/TopBar";
 
 export default function UnderConstructionPage() {
   return (

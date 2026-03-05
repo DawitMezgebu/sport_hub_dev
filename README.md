@@ -16,7 +16,6 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/DawitMezgebu/sport_hub_dev.git
-cd sport_hub_dev
 ```
 
 Install dependencies:
@@ -74,8 +73,11 @@ src
 │     └─ env.ts
 │
 ├─ pages
+|  ├─ NotFound.tsx
+|  ├─ UnderConstruction.tsx
 │  ├─ FixturesPage.tsx
 │  └─ MatchPage.tsx
+|
 │
 ├─ routes
 │
@@ -84,8 +86,6 @@ src
 │
 ├─ utils
 │
-├─ NotFound.tsx
-├─ UnderConstruction.tsx
 ├─ App.tsx
 └─ main.tsx
 ```
@@ -165,6 +165,7 @@ pnpm run build
 ```
 
 ---
+
 # Deployment
 
 The project can be deployed easily using **Netlify**.
