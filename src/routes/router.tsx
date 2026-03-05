@@ -3,7 +3,7 @@ import { PATHS } from "./paths";
 import FixturesPage from "../pages/FixturesPage";
 import MatchPage from "../pages/MatchPage";
 import NotFound from "../pages/NotFound";
-import UnderConstructionPage from "../pages/underconstruction";
+import UnderConstructionPage from "../pages/UnderConstruction";
 
 export const router = createBrowserRouter([
   {
