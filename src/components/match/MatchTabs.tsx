@@ -20,7 +20,7 @@ export default function MatchTabs() {
 
   return (
     <>
-      <div className="mt-8 flex items-center justify-center gap-6  overflow-x-auto">
+      <div className="mt-8 flex items-center justify-center gap-6  overflow-x-auto no-scrollbar">
         {tabs.map((tab) => (
           <button
             key={tab}

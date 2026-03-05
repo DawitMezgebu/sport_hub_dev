@@ -130,7 +130,7 @@ export default function FixturesPage() {
 
           <DateBar />
 
-          <div className="mt-4 flex items-center gap-3 overflow-x-auto">
+          <div className="mt-4 flex items-center gap-3 overflow-x-auto no-scrollbar">
             <FilterPill
               active={filter === "all"}
               label="All"

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function cn(...classes: Array<string | false | undefined | null>) {
   return classes.filter(Boolean).join(" ");
 }
@@ -25,6 +27,23 @@ export default function MatchRow({
   onClick: () => void;
   isLive: boolean;
 }) {
+  const [minute, setMinute] = useState(32);
+
+  useEffect(() => {
+    if (!isLive) return;
+
+    const interval = setInterval(() => {
+      setMinute((prev) => {
+        if (prev >= 90) {
+          clearInterval(interval);
+          return 90;
+        }
+        return prev + 1;
+      });
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [isLive]);
   const isFinished = statusColor === "red";
 
   const borderStyle = isLive
@@ -58,7 +77,7 @@ export default function MatchRow({
                 : "font-semibold text-white/80",
             )}
           >
-            {statusLabel}
+            {isLive ? `${minute}'` : statusLabel}
           </div>
 
           {isLive && (
