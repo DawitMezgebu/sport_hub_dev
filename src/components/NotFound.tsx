@@ -4,7 +4,15 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#141824] flex items-center justify-center px-6 text-white">
       <div className="text-center max-w-[520px] w-full">
-        <div className="mx-auto w-[240px] h-[240px] mb-16"></div>
+        
+        <img
+          src="
+        https://static.vecteezy.com/system/resources/thumbnails/024/217/744/small/design-template-for-web-page-with-404-error-isometric-page-not-working-error-png.png
+            "
+          alt="Under construction illustration"
+          className="mx-auto mb-6"
+        />
+
         <h1 className="text-5xl font-extrabold tracking-tight text-[#00FFB3]">
           404
         </h1>

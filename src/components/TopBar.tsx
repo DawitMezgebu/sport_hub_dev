@@ -29,16 +29,25 @@ const NAV_TO_PATH: Record<NavKey, string> = {
   Venues: "/venues",
 };
 
-export default function TopNav({
-  active,
-  onChangeActive,
-  leagues,
-  leagueId,
-  onChangeLeague,
-  seasons,
-  seasonId,
-  onChangeSeason,
-}: {
+const FALLBACK_LEAGUES: LeagueOption[] = [
+  { id: "133602", label: "Premier League" },
+];
+const FALLBACK_SEASONS: SeasonOption[] = [
+  { id: "2023-24", label: "2023/24" },
+  { id: "2024-25", label: "2024/25" },
+];
+
+const NAV_ITEMS: NavKey[] = [
+  "Live",
+  "Matches",
+  "Standings",
+  "Teams",
+  "Comparison",
+  "Statistics",
+  "Venues",
+];
+
+type Props = {
   active?: NavKey;
   onChangeActive?: (key: NavKey) => void;
 
@@ -49,28 +58,28 @@ export default function TopNav({
   seasons?: SeasonOption[];
   seasonId?: string;
   onChangeSeason?: (id: string) => void;
-}) {
-  const navItems: NavKey[] = useMemo(
-    () => [
-      "Live",
-      "Matches",
-      "Standings",
-      "Teams",
-      "Comparison",
-      "Statistics",
-      "Venues",
-    ],
-    [],
-  );
+};
 
+export default function TopNav({
+  active,
+  onChangeActive,
+  leagues,
+  leagueId,
+  onChangeLeague,
+  seasons,
+  seasonId,
+  onChangeSeason,
+}: Props) {
   const location = useLocation();
 
-  const inferredActive: NavKey =
-    active ??
-    (Object.entries(NAV_TO_PATH).find(
+  const inferredActive: NavKey = useMemo(() => {
+    if (active) return active;
+
+    const hit = Object.entries(NAV_TO_PATH).find(
       ([, path]) => path === location.pathname,
-    )?.[0] as NavKey) ??
-    "Matches";
+    );
+    return (hit?.[0] as NavKey) ?? "Matches";
+  }, [active, location.pathname]);
 
   const leagueLabel =
     leagues?.find((l) => l.id === leagueId)?.label ?? "Premier League";
@@ -84,33 +93,83 @@ export default function TopNav({
   const leagueRef = useRef<HTMLDivElement | null>(null);
   const seasonRef = useRef<HTMLDivElement | null>(null);
 
-  function closeAllPopovers() {
+  const closeAllPopovers = () => {
     setLeagueOpen(false);
     setSeasonOpen(false);
-  }
+  };
 
-  function selectNav(k: NavKey) {
-    onChangeActive?.(k);
+  const closeAll = () => {
     setMobileOpen(false);
     closeAllPopovers();
-  }
+  };
 
-  // close dropdowns on outside click
+  const selectNav = (k: NavKey) => {
+    onChangeActive?.(k);
+    closeAll();
+  };
+
   useEffect(() => {
     function onDown(e: MouseEvent) {
-      const t = e.target as Node;
-      if (leagueRef.current && leagueRef.current.contains(t)) return;
-      if (seasonRef.current && seasonRef.current.contains(t)) return;
+      const target = e.target as Node;
+
+      const clickedLeague = leagueRef.current?.contains(target);
+      const clickedSeason = seasonRef.current?.contains(target);
+
+      if (clickedLeague || clickedSeason) return;
+
       closeAllPopovers();
     }
+
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
   }, []);
 
+  const desktopNavLink = (k: NavKey) => {
+    const isActive = k === inferredActive;
+
+    return (
+      <Link
+        key={k}
+        to={NAV_TO_PATH[k]}
+        onClick={() => selectNav(k)}
+        className={cn(
+          "pb-[6px] font-normal hover:text-white hover:border-b-2 hover:border-[#00FFA5]",
+          isActive
+            ? "border-b-2 border-[#00FFA5] text-[#00FFA5] font-bold"
+            : "text-white/85",
+        )}
+      >
+        {k}
+      </Link>
+    );
+  };
+
+  const mobileNavLink = (k: NavKey) => {
+    const isActive = k === inferredActive;
+
+    return (
+      <Link
+        key={k}
+        to={NAV_TO_PATH[k]}
+        onClick={() => selectNav(k)}
+        className={cn(
+          "rounded-xl px-3 py-2 text-left text-sm font-semibold",
+          isActive
+            ? "bg-[#00FFB3] text-[#0B0F17]"
+            : "bg-white/10 text-white/90 hover:bg-white/15",
+        )}
+      >
+        {k}
+      </Link>
+    );
+  };
+
+  const leagueList = leagues?.length ? leagues : FALLBACK_LEAGUES;
+  const seasonList = seasons?.length ? seasons : FALLBACK_SEASONS;
+
   return (
     <header className="w-full bg-[#6D00FF]">
       <div className="mx-auto flex h-[64px] w-full max-w-[1440px] items-center justify-between px-3 sm:px-4 lg:px-6">
-        {/* LEFT */}
         <div className="flex min-w-0 items-center gap-3 lg:gap-10">
           <Link
             to="/"
@@ -120,36 +179,16 @@ export default function TopNav({
             <img
               src={logo}
               alt="logo"
-              className="h-8 w-auto sm:h-9 select-none"
+              className="h-8 w-auto select-none sm:h-9"
             />
           </Link>
 
-          {/* Desktop nav only */}
-          <nav className="hidden lg:flex items-center gap-7 text-[15px] text-white/85">
-            {navItems.map((k) => {
-              const isActive = k === inferredActive;
-              return (
-                <Link
-                  key={k}
-                  to={NAV_TO_PATH[k]}
-                  onClick={() => selectNav(k)}
-                  className={cn(
-                    "pb-[6px] font-normal hover:text-white hover:border-b-2 hover:border-[#00FFA5]",
-                    isActive
-                      ? "border-b-2 border-[#00FFA5] text-[#00FFA5] font-bold"
-                      : "text-white/85",
-                  )}
-                >
-                  {k}
-                </Link>
-              );
-            })}
+          <nav className="hidden items-center gap-7 text-[15px] text-white/85 lg:flex">
+            {NAV_ITEMS.map(desktopNavLink)}
           </nav>
         </div>
 
-        {/* RIGHT */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* icons always visible */}
           <button
             type="button"
             className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
@@ -166,7 +205,6 @@ export default function TopNav({
             ⚽
           </button>
 
-          {/* League dropdown: desktop only (keeps mobile clean like your screenshot) */}
           <div className="relative hidden lg:block" ref={leagueRef}>
             <button
               type="button"
@@ -186,11 +224,9 @@ export default function TopNav({
                 <div className="px-3 py-2 text-xs font-semibold text-white/60">
                   League
                 </div>
+
                 <div className="max-h-[260px] overflow-auto">
-                  {(leagues?.length
-                    ? leagues
-                    : [{ id: "133602", label: "Premier League" }]
-                  ).map((l) => (
+                  {leagueList.map((l) => (
                     <button
                       key={l.id}
                       type="button"
@@ -211,7 +247,6 @@ export default function TopNav({
             )}
           </div>
 
-          {/* Season pill: visible on mobile + desktop (like your screenshot) */}
           <div className="relative" ref={seasonRef}>
             <button
               type="button"
@@ -220,7 +255,7 @@ export default function TopNav({
                 setLeagueOpen(false);
               }}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full bg-white/15 px-3 text-xs sm:text-sm text-white/90 hover:bg-white/20",
+                "flex h-9 items-center gap-2 rounded-full bg-white/15 px-3 text-xs text-white/90 hover:bg-white/20 sm:text-sm",
                 "max-w-[120px] sm:max-w-[160px]",
               )}
             >
@@ -233,13 +268,8 @@ export default function TopNav({
                 <div className="px-3 py-2 text-xs font-semibold text-white/60">
                   Season
                 </div>
-                {(seasons?.length
-                  ? seasons
-                  : [
-                      { id: "2023-24", label: "2023/24" },
-                      { id: "2024-25", label: "2024/25" },
-                    ]
-                ).map((s) => (
+
+                {seasonList.map((s) => (
                   <button
                     key={s.id}
                     type="button"
@@ -258,15 +288,15 @@ export default function TopNav({
               </div>
             )}
           </div>
+
           <button
             type="button"
             className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
-            aria-label="Sport"
+            aria-label="Region"
           >
             🏴󠁧󠁢󠁥󠁮󠁧󠁿
           </button>
 
-          {/* Hamburger: mobile only */}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
@@ -278,41 +308,20 @@ export default function TopNav({
         </div>
       </div>
 
-      {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-[#1D1E2B]">
-          <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-4 py-3">
+        <div className="border-t border-white/10 bg-[#1D1E2B] lg:hidden">
+          <div className="mx-auto w-full max-w-[1440px] px-3 py-3 sm:px-4">
             <div className="grid grid-cols-2 gap-2">
-              {navItems.map((k) => {
-                const isActive = k === inferredActive;
-                return (
-                  <Link
-                    key={k}
-                    to={NAV_TO_PATH[k]}
-                    onClick={() => selectNav(k)}
-                    className={cn(
-                      "rounded-xl px-3 py-2 text-left text-sm font-semibold",
-                      isActive
-                        ? "bg-[#00FFB3] text-[#0B0F17]"
-                        : "bg-white/10 text-white/90 hover:bg-white/15",
-                    )}
-                  >
-                    {k}
-                  </Link>
-                );
-              })}
+              {NAV_ITEMS.map(mobileNavLink)}
             </div>
 
-            {/* Optional: show league dropdown inside mobile drawer */}
             <div className="mt-3 rounded-xl bg-white/10 p-2">
-              <div className="text-xs font-semibold text-white/70 px-2 py-1">
+              <div className="px-2 py-1 text-xs font-semibold text-white/70">
                 League
               </div>
+
               <div className="max-h-[220px] overflow-auto">
-                {(leagues?.length
-                  ? leagues
-                  : [{ id: "133602", label: "Premier League" }]
-                ).map((l) => (
+                {leagueList.map((l) => (
                   <button
                     key={l.id}
                     type="button"
@@ -321,7 +330,7 @@ export default function TopNav({
                       setMobileOpen(false);
                     }}
                     className={cn(
-                      "w-full px-2 py-2 text-left text-sm rounded-lg hover:bg-white/10",
+                      "w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-white/10",
                       l.id === leagueId ? "text-[#00FFB3]" : "text-white/90",
                     )}
                   >
