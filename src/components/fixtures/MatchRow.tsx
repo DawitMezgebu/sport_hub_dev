@@ -40,7 +40,7 @@ export default function MatchRow({
         }
         return prev + 1;
       });
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isLive]);
@@ -81,7 +81,7 @@ export default function MatchRow({
           </div>
 
           {isLive && (
-            <div className="mt-2 h-0.5 w-5  bg-[var(--accent)] animate__animated  animate__slideOutRight animate__delay-5s	5s animate__infinite	 "></div>
+            <div className="mt-2 h-0.5 w-4  bg-[var(--accent)] animate__animated  animate__slideOutRight animate__delay-1s	1s animate__infinite"></div>
           )}
         </div>
 
@@ -122,7 +122,7 @@ export default function MatchRow({
             <div className="text-right">
               <div className=" text-[12px] font-medium text-white">
                 {homeScore}
-              </div>  
+              </div>
               <div className="mt-3 text-[12px] font-medium   text-white">
                 {awayScore}
               </div>

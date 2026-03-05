@@ -6,157 +6,7 @@ import { normalizeMatchEvents, type TimelineEvent } from "../utils/normalize";
 import TimelineRow from "../components/match/Timeline";
 import MatchTabs from "../components/match/MatchTabs";
 import { ArrowLeft } from "lucide-react";
-
-const FALLBACK_TIMELINE: TimelineEvent[] = [
-  {
-    id: "ft",
-    minuteLabel: "Fulltime 2 - 1",
-    side: "center",
-    type: "info",
-    primary: "",
-  },
-  {
-    id: "89",
-    minuteLabel: "89'",
-    side: "home",
-    type: "sub",
-    primary: "Gyokeres",
-    secondary: "Odegaard",
-  },
-  {
-    id: "88",
-    minuteLabel: "88'",
-    side: "away",
-    type: "sub",
-    primary: "Ekitike",
-    secondary: "Salah",
-  },
-  {
-    id: "78",
-    minuteLabel: "78'",
-    side: "home",
-    type: "yellow",
-    primary: "Saliba",
-  },
-  {
-    id: "74",
-    minuteLabel: "74'",
-    side: "home",
-    type: "corner",
-    primary: "3rd corner",
-  },
-  {
-    id: "67",
-    minuteLabel: "67'",
-    side: "home",
-    type: "sub",
-    primary: "Rice",
-    secondary: "Zubimendi",
-  },
-  {
-    id: "66",
-    minuteLabel: "66'",
-    side: "away",
-    type: "red",
-    primary: "Van Dijk",
-    secondary: "Sent Off",
-  },
-  { id: "55", minuteLabel: "55'", side: "home", type: "goal", primary: "Saka" },
-  {
-    id: "52",
-    minuteLabel: "52'",
-    side: "home",
-    type: "corner",
-    primary: "5th corner",
-  },
-  {
-    id: "48",
-    minuteLabel: "48'",
-    side: "away",
-    type: "corner",
-    primary: "3rd Corner",
-  },
-  {
-    id: "ht",
-    minuteLabel: "Halftime 1 - 0",
-    side: "center",
-    type: "info",
-    primary: "",
-  },
-  {
-    id: "45+2",
-    minuteLabel: "45+2'",
-    side: "home",
-    type: "corner",
-    primary: "2nd corner",
-  },
-  {
-    id: "45",
-    minuteLabel: "45'",
-    side: "away",
-    type: "sub",
-    primary: "Jones",
-    secondary: "Mcalister",
-  },
-  {
-    id: "44a",
-    minuteLabel: "44'",
-    side: "home",
-    type: "yellow",
-    primary: "Gabriel",
-  },
-  {
-    id: "44b",
-    minuteLabel: "44'",
-    side: "away",
-    type: "info",
-    primary: "Jones",
-    secondary: "Injured",
-  },
-  {
-    id: "36",
-    minuteLabel: "36'",
-    side: "home",
-    type: "corner",
-    primary: "1st corner",
-  },
-  {
-    id: "25",
-    minuteLabel: "25'",
-    side: "home",
-    type: "goal",
-    primary: "Gyokeres",
-  },
-  {
-    id: "16",
-    minuteLabel: "16'",
-    side: "away",
-    type: "corner",
-    primary: "2nd Corner",
-  },
-  {
-    id: "12",
-    minuteLabel: "12'",
-    side: "home",
-    type: "goal",
-    primary: "Gyokeres",
-    secondary: "Odegaard",
-  },
-  {
-    id: "3",
-    minuteLabel: "3'",
-    side: "away",
-    type: "corner",
-    primary: "1st Corner",
-  },
-  {
-    id: "ko",
-    minuteLabel: "Kick Off - 13:00",
-    side: "center",
-    type: "info",
-    primary: "",
-  },
-];
+import { FALLBACK_TIMELINE } from "../mock/timeline.fallback";
 
 export default function MatchPage() {
   const { eventId } = useParams();
@@ -172,7 +22,14 @@ export default function MatchPage() {
   const league = String(event?.strLeague ?? "League");
   const hs = event?.intHomeScore ?? "";
   const as = event?.intAwayScore ?? "";
-  const dateLabel = String(event?.dateEvent ?? "").slice(0, 10);
+  const dateLabel = event?.dateEvent
+    ? new Date(event.dateEvent)
+        .toLocaleDateString(undefined, {
+          day: "2-digit",
+          month: "short",
+        })
+        .toUpperCase()
+    : "";
 
   const timeline: TimelineEvent[] = useMemo(() => {
     if (!event) return FALLBACK_TIMELINE;
@@ -226,7 +83,7 @@ export default function MatchPage() {
                 className="grid h-10 w-10 place-items-center rounded-xl  "
                 aria-label="Back"
               >
-                <ArrowLeft className="h-4 w-auto"/>
+                <ArrowLeft className="h-4 w-auto" />
               </Link>
 
               <div className="text-sm text-white/70">{league}</div>
@@ -280,7 +137,7 @@ export default function MatchPage() {
           <div className="mx-auto mt-6 w-full max-w-[760px] rounded-2xl bg-[var(--card)] px-7 py-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
             <div className="text-sm font-semibold text-white/90">Events</div>
 
-            <div className="mt-4 border-t border-white/10 pt-5">
+            <div className="mt-4 pt-5">
               <div className="relative">
                 <div className="space-y-2">
                   {timeline.map((e) => {
@@ -288,9 +145,15 @@ export default function MatchPage() {
                       return (
                         <div
                           key={e.id}
-                          className="py-3 text-center text-xs text-white/55"
+                          className="flex items-center gap-3 py-3 text-xs text-white/50"
                         >
-                          {e.minuteLabel}
+                          <div className="flex-1 border-t border-white/10"></div>
+
+                          <span className="px-2 tracking-wide">
+                            {e.minuteLabel}
+                          </span>
+
+                          <div className="flex-1 border-t border-white/10"></div>
                         </div>
                       );
                     }

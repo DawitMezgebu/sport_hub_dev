@@ -31,8 +31,8 @@ export default function FilterPill({
       {label}
       <span
         className={cn(
-          "ml-1 grid h-6 min-w-[24px] place-items-center rounded-lg px-2 text-xs",
-          active ? "bg-black/10" : "bg-white/10",
+          "ml-1 grid h-6 min-w-[24px] place-items-center rounded-full px-2 text-xs",
+          active ? "bg-[var(--card)] text-[var(--accent)]" : "bg-white/10",
         )}
       >
         {count}

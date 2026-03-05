@@ -6,6 +6,8 @@ export type TimelineType =
   | "red"
   | "sub"
   | "corner"
+  | "injury"
+  | "shoot"
   | "info";
 
 export interface TimelineEvent {

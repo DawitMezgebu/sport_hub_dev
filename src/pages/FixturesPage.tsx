@@ -155,7 +155,7 @@ export default function FixturesPage() {
               onClick={() => setFilter("favorites")}
               icon={
                 <span className="text-xs">
-                  <Heart />
+                  <Heart className="h-4 w-auto" />
                 </span>
               }
             />
