@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #141824;
+  --card: #1d1e2b;
+  --accent: #00ffa5;
+  --danger: #ff4d4d;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: rgba(255, 255, 255, 0.92);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* remove mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =============== Scrollbar (optional) =============== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* =============== Reusable classes via Tailwind layer =============== */
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-[1180px] px-4 sm:px-6;
+  }
+
+  .card {
+    @apply rounded-2xl bg-[#1B1F2B] shadow-[0_10px_30px_rgba(0,0,0,0.25)];
+  }
+
+  .card-2 {
+    @apply rounded-2xl bg-[#1D1E2B] shadow-[0_10px_30px_rgba(0,0,0,0.25)];
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFB3]/60;
+  }
+}
