@@ -20,7 +20,7 @@ export default function DateBar() {
   }
 
   return (
-    <div className="mt-4 flex w-full items-center justify-between rounded-xl bg-[#1E2230] px-4 py-3 text-white/85">
+    <div className="mt-4 flex w-full items-center justify-between rounded-xl bg-[var(--card)] px-4 py-3 text-white/85">
       <button
         onClick={() => changeDay(-1)}
         className="text-xl leading-none hover:text-white"

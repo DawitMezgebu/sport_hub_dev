@@ -7,7 +7,7 @@ export default function LeagueSection({
 }) {
   return (
     <>
-      <div className="mt-5 rounded-2xl bg-[#1D1E2B] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.25)] ">
+      <div className="mt-5 rounded-2xl bg-[var(--card)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.25)] ">
         <div className="flex items-center justify-between pb-3 ">
           <div className="text-sm font-semibold text-white/90">{title}</div>
           <div className="grid h-9 w-9 place-items-center rounded-lg hover:bg-white/10">

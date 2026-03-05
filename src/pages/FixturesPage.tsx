@@ -121,7 +121,7 @@ export default function FixturesPage() {
   const favCount = enriched.filter((m) => favorites[m.id]).length;
 
   return (
-    <div className="min-h-screen  bg-[#141824] text-white">
+    <div className="min-h-screen  bg-[var(--bg)] text-white">
       <TopNav />
 
       <div className="mx-auto max-w-[1180px] px-6 pb-16">
@@ -168,7 +168,7 @@ export default function FixturesPage() {
               ))}
             </div>
           ) : isError ? (
-            <div className="mt-6 rounded-2xl bg-[#1D1E2B] p-6 text-white/80">
+            <div className="mt-6 rounded-2xl bg-[var(--card)] p-6 text-white/80">
               <div className="text-lg font-semibold text-white">
                 Failed to load matches
               </div>

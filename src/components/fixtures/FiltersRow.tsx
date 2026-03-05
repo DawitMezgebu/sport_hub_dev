@@ -21,8 +21,8 @@ export default function FilterPill({
       className={cn(
         "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium ",
         active
-          ? "bg-[#00FFB3] text-[#0B0F17]"
-          : "bg-[#1E2230] text-white/80 hover:text-white",
+          ? "bg-[var(--accent)] text-[#0B0F17]"
+          : "bg-[var(--card)] text-white/80 hover:text-white",
       )}
     >
       {icon ? (

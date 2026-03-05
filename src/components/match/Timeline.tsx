@@ -16,9 +16,9 @@ function cn(...classes: Array<string | false | undefined | null>) {
 
 function Icon({ type }: { type: TimelineType }) {
   if (type === "goal") return <span className="text-white/90">⚽</span>;
-  if (type === "yellow") return <span className="text-[#FFD400]">■</span>;
-  if (type === "red") return <span className="text-[#FF4D4D]">■</span>;
-  if (type === "sub") return <span className="text-[#00FFB3]">⇄</span>;
+  if (type === "yellow") return <span className="text-[var(--yellow)]">■</span>;
+  if (type === "red") return <span className="text-[var(--danger)]">■</span>;
+  if (type === "sub") return <span className="text-[var(--accent)]">⇄</span>;
   if (type === "corner") return <span className="text-white/60">P</span>;
   return <span className="text-white/60">•</span>;
 }
@@ -28,7 +28,9 @@ function MinutePill({ label, active }: { label: string; active?: boolean }) {
     <div
       className={cn(
         "w-[54px] rounded-full px-0 py-[6px] text-center text-xs font-bold",
-        active ? "bg-[#00FFB3] text-[#0B0F17]" : "bg-[#2A2F3E] text-white/75",
+        active
+          ? "bg-[var(--accent)] text-[var(--textColor)]"
+          : "bg-[#2A2F3E] text-white/75",
       )}
     >
       {label}

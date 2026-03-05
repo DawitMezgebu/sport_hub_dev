@@ -3,7 +3,7 @@ import TopNav from "./TopBar";
 
 export default function UnderConstructionPage() {
   return (
-    <div className="min-h-screen bg-[#141824] text-white">
+    <div className="min-h-screen bg-[var(--bg)] text-white">
       <TopNav />
 
       <main className="flex min-h-[calc(100vh-64px)] items-center justify-center px-6">
@@ -25,7 +25,7 @@ export default function UnderConstructionPage() {
 
           <Link
             to="/"
-            className="mt-8 inline-flex items-center justify-center rounded-xl bg-[#00FFB3] px-6 py-3 text-sm font-semibold text-[#0B0F17] transition hover:brightness-110 active:scale-[0.98]"
+            className="mt-8 inline-flex items-center justify-center rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--textColor)] transition hover:brightness-110 active:scale-[0.98]"
           >
             Go Back Home
           </Link>

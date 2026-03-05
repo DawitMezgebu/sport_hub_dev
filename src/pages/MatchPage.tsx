@@ -213,12 +213,12 @@ export default function MatchPage() {
   }, [event, hs, as]);
 
   return (
-    <div className="min-h-screen w-full bg-[#141824] text-white">
+    <div className="min-h-screen w-full bg-[var(--bg)] text-white">
       <TopNav />
 
       <div className="mx-auto w-full px-6 pb-24">
         <div className="pt-8">
-          <div className="mx-auto w-full max-w-[760px] rounded-2xl bg-[#1D1E2B] px-8 py-7 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+          <div className="mx-auto w-full max-w-[760px] rounded-2xl bg-[var(--card)] px-8 py-7 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
             <div className="flex items-center space-x-3">
               <Link
                 to="/"
@@ -257,7 +257,7 @@ export default function MatchPage() {
                   <div className="mt-1 text-3xl font-extrabold tracking-tight">
                     {hs} <span className="text-white/50">-</span> {as}
                   </div>
-                  <div className="mt-2 inline-flex rounded-md bg-[#FF4D4D] px-3 py-1 text-xs font-bold text-white">
+                  <div className="mt-2 inline-flex rounded-md bg-[var(--danger)] px-3 py-1 text-xs font-bold text-white">
                     Finished
                   </div>
                 </div>
@@ -276,7 +276,7 @@ export default function MatchPage() {
 
             <MatchTabs />
           </div>
-          <div className="mx-auto mt-6 w-full max-w-[760px] rounded-2xl bg-[#1D1E2B] px-7 py-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+          <div className="mx-auto mt-6 w-full max-w-[760px] rounded-2xl bg-[var(--card)] px-7 py-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
             <div className="text-sm font-semibold text-white/90">Events</div>
 
             <div className="mt-4 border-t border-white/10 pt-5">

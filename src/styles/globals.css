@@ -8,6 +8,9 @@
   --card: #1d1e2b;
   --accent: #00ffa5;
   --danger: #ff4d4d;
+  --yellow: #ffd400;
+  --textColor: #0b0f17;
+  --navbarbg: #6d00ff;
 }
 
 html,
@@ -38,7 +41,11 @@ body {
 * {
   -webkit-tap-highlight-color: transparent;
 }
-
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
 /* =============== Scrollbar (optional) =============== */
 ::-webkit-scrollbar {
   width: 10px;

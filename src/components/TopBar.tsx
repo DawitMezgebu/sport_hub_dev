@@ -133,9 +133,9 @@ export default function TopNav({
         to={NAV_TO_PATH[k]}
         onClick={() => selectNav(k)}
         className={cn(
-          "pb-[6px] font-normal hover:text-white hover:border-b-2 hover:border-[#00FFA5]",
+          "pb-[6px] font-normal hover:text-white hover:border-b-2 hover:border-[var(--accent)]",
           isActive
-            ? "border-b-2 border-[#00FFA5] text-[#00FFA5] font-bold"
+            ? "border-b-2 border-[var(--accent)] text-[var(--accent)] font-bold"
             : "text-white/85",
         )}
       >
@@ -155,7 +155,7 @@ export default function TopNav({
         className={cn(
           "rounded-xl px-3 py-2 text-left text-sm font-semibold",
           isActive
-            ? "bg-[#00FFB3] text-[#0B0F17]"
+            ? "bg-[var(--accent)] text-[var(--textColor)]"
             : "bg-white/10 text-white/90 hover:bg-white/15",
         )}
       >
@@ -168,7 +168,7 @@ export default function TopNav({
   const seasonList = seasons?.length ? seasons : FALLBACK_SEASONS;
 
   return (
-    <header className="w-full bg-[#6D00FF]">
+    <header className="w-full bg-[var(--navbarbg)]">
       <div className="mx-auto flex h-[64px] w-full max-w-[1440px] items-center justify-between px-3 sm:px-4 lg:px-6">
         <div className="flex min-w-0 items-center gap-3 lg:gap-10">
           <Link
@@ -220,7 +220,7 @@ export default function TopNav({
             </button>
 
             {leagueOpen && (
-              <div className="absolute right-0 top-[44px] z-50 w-[240px] overflow-hidden rounded-xl border border-white/10 bg-[#1B1F2B] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+              <div className="absolute right-0 top-[44px] z-50 w-[240px] overflow-hidden rounded-xl border border-white/10 bg-[var(--card)] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                 <div className="px-3 py-2 text-xs font-semibold text-white/60">
                   League
                 </div>
@@ -236,7 +236,9 @@ export default function TopNav({
                       }}
                       className={cn(
                         "w-full px-3 py-2 text-left text-sm hover:bg-white/5",
-                        l.id === leagueId ? "text-[#00FFB3]" : "text-white/90",
+                        l.id === leagueId
+                          ? "text-[var(--accent)]"
+                          : "text-white/90",
                       )}
                     >
                       {l.label}
@@ -264,7 +266,7 @@ export default function TopNav({
             </button>
 
             {seasonOpen && (
-              <div className="absolute right-0 top-[44px] z-50 w-[170px] overflow-hidden rounded-xl border border-white/10 bg-[#1B1F2B] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+              <div className="absolute right-0 top-[44px] z-50 w-[170px] overflow-hidden rounded-xl border border-white/10 bg-[var(--card)] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                 <div className="px-3 py-2 text-xs font-semibold text-white/60">
                   Season
                 </div>
@@ -279,7 +281,9 @@ export default function TopNav({
                     }}
                     className={cn(
                       "w-full px-3 py-2 text-left text-sm hover:bg-white/5",
-                      s.id === seasonId ? "text-[#00FFB3]" : "text-white/90",
+                      s.id === seasonId
+                        ? "text-[var(--accent)]"
+                        : "text-white/90",
                     )}
                   >
                     {s.label}
@@ -309,7 +313,7 @@ export default function TopNav({
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-[#1D1E2B] lg:hidden">
+        <div className="border-t border-white/10 bg-[var(--card)] lg:hidden">
           <div className="mx-auto w-full max-w-[1440px] px-3 py-3 sm:px-4">
             <div className="grid grid-cols-2 gap-2">
               {NAV_ITEMS.map(mobileNavLink)}
@@ -331,7 +335,9 @@ export default function TopNav({
                     }}
                     className={cn(
                       "w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-white/10",
-                      l.id === leagueId ? "text-[#00FFB3]" : "text-white/90",
+                      l.id === leagueId
+                        ? "text-[var(--accent)]"
+                        : "text-white/90",
                     )}
                   >
                     {l.label}

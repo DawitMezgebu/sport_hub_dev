@@ -47,9 +47,9 @@ export default function MatchRow({
   const isFinished = statusColor === "red";
 
   const borderStyle = isLive
-    ? "border-l-[#00FFA5] "
+    ? "border-l-[var(--accent)] "
     : isFinished
-      ? "border-l-[#FF4D4D]"
+      ? "border-l-[var(--danger)] "
       : "border-l-white/15";
 
   const livePanel =
@@ -61,7 +61,7 @@ export default function MatchRow({
       <button
         onClick={onClick}
         className={cn(
-          "group relative flex w-full items-stretch gap-4 px-3 h-[70px] text-left rounded-none  z-10 bg-[#1D1E2B]",
+          "group relative flex w-full items-stretch gap-4 px-3 h-[70px] text-left rounded-none  z-10 bg-[var(--card)]",
           "border-l-4",
           borderStyle,
           livePanel,
@@ -73,7 +73,7 @@ export default function MatchRow({
             className={cn(
               "text-[12px] leading-none",
               isLive
-                ? "font-bold text-[#00FFB3]"
+                ? "font-bold text-[var(--accent)]"
                 : "font-semibold text-white/80",
             )}
           >
@@ -81,7 +81,7 @@ export default function MatchRow({
           </div>
 
           {isLive && (
-            <div className="mt-2 h-0.5 w-5  bg-[#00FFB3] animate__animated  animate__slideOutRight animate__delay-5s	5s animate__infinite	 "></div>
+            <div className="mt-2 h-0.5 w-5  bg-[var(--accent)] animate__animated  animate__slideOutRight animate__delay-5s	5s animate__infinite	 "></div>
           )}
         </div>
 
