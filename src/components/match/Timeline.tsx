@@ -114,7 +114,7 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
   }
 
   return (
-    <div className="grid grid-cols-[1fr_80px_1fr] items-center py-3">
+    <div className="grid grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center py-3">
       {/* LEFT (Home) */}
       <div
         className={cn("flex justify-end", left ? "opacity-100" : "opacity-60")}

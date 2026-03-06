@@ -24,14 +24,15 @@ export default function MatchPage() {
   const as = event?.intAwayScore ?? "";
 
   const league = event?.strLeague ?? "League";
-
   const dateLabel = event?.dateEvent
-    ? new Date(event.dateEvent)
-        .toLocaleDateString(undefined, {
-          day: "2-digit",
-          month: "short",
-        })
-        .toUpperCase()
+    ? (() => {
+        const d = new Date(event.dateEvent);
+        const day = d.getDate();
+        const month = d
+          .toLocaleString("en-US", { month: "short" })
+          .toUpperCase();
+        return `${day} ${month}`;
+      })()
     : "";
 
   const timeline: TimelineEvent[] = useMemo(() => {

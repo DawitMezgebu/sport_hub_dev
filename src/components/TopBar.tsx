@@ -191,7 +191,7 @@ export default function TopNav({
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
+            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px]  place-items-center rounded-full bg-white/15 hover:bg-white/20"
             aria-label="Language"
           >
             🌍
@@ -199,7 +199,7 @@ export default function TopNav({
 
           <button
             type="button"
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
+            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px] place-items-center rounded-full bg-white/15 hover:bg-white/20"
             aria-label="Sport"
           >
             ⚽
@@ -312,7 +312,7 @@ export default function TopNav({
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20 lg:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full  hover:bg-white/20 lg:hidden"
             aria-label="Menu"
           >
             <Menu size={18} />
