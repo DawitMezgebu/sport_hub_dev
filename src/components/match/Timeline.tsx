@@ -44,9 +44,7 @@ function Icon({ type }: { type: TimelineType }) {
     return (
       <span className="text-[var(--danger)]">
         <img
-          src="
-https://cdn-icons-png.flaticon.com/512/18164/18164650.png
-  "
+          src="https://cdn-icons-png.flaticon.com/512/18164/18164650.png"
           className=""
         />
       </span>
@@ -115,7 +113,6 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center py-3">
-      {/* LEFT (Home) */}
       <div
         className={cn("flex justify-end", left ? "opacity-100" : "opacity-60")}
       >
@@ -141,12 +138,10 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
         )}
       </div>
 
-      {/* CENTER (Minute) */}
       <div className="flex items-center justify-center">
         <MinutePill label={e.minuteLabel} active={e.type === "sub"} />
       </div>
 
-      {/* RIGHT (Away) */}
       <div
         className={cn(
           "flex justify-start",
@@ -155,7 +150,6 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
       >
         {right ? (
           <div className="flex items-center gap-2">
-            {/* connector line */}
             <div className="h-[2px] w-4 rounded-full bg-white/10" />
 
             <div className="w-6 ">

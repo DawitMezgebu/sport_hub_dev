@@ -191,18 +191,18 @@ export default function TopNav({
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
-            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px]  place-items-center rounded-full bg-white/15 hover:bg-white/20"
+            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px]  place-items-center rounded-full bg-[#1d1e2b] bg-opacity-15  hover:bg-white/20"
             aria-label="Language"
           >
-            🌍
+              <span className="lg:text-2xl">🌍</span> 
           </button>
 
           <button
             type="button"
-            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px] place-items-center rounded-full bg-white/15 hover:bg-white/20"
+            className="grid lg:h-[40px] lg:w-[40px] h-[24px] w-[24px] place-items-center rounded-full bg-[#1d1e2b] bg-opacity-15 hover:bg-white/20"
             aria-label="Sport"
           >
-            ⚽
+           <span className="lg:text-2xl">⚽</span> 
           </button>
 
           <div className="relative hidden lg:block" ref={leagueRef}>
@@ -212,7 +212,7 @@ export default function TopNav({
                 setLeagueOpen((v) => !v);
                 setSeasonOpen(false);
               }}
-              className="flex h-9 items-center gap-2 rounded-full bg-white/15 px-3 text-sm text-white/90 hover:bg-white/20"
+              className="flex h-9 items-center gap-2 rounded-full bg-[#1d1e2b] bg-opacity-15  px-3 text-sm text-white/90 hover:bg-white/20"
             >
               <img
                 src="https://play-lh.googleusercontent.com/gvlKi4GfJUgLh6HaVbM1wz_55NVngbs1Icn4t9oDzXIyxSLiT3401TrjAJNpeJs7mKtg1Tm2yTDFv_-mkWxh"
@@ -262,7 +262,7 @@ export default function TopNav({
                 setLeagueOpen(false);
               }}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full bg-white/15 px-3 text-xs text-white/90 hover:bg-white/20 sm:text-sm",
+                "flex h-9 items-center gap-2 rounded-full bg-[#1d1e2b] bg-opacity-15  px-3 text-xs text-white/90 hover:bg-white/20 sm:text-sm",
                 "max-w-[120px] sm:max-w-[160px]",
               )}
             >
@@ -300,7 +300,7 @@ export default function TopNav({
 
           <button
             type="button"
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/15 hover:bg-white/20"
+            className="grid h-9 w-9 place-items-center rounded-full bg-[#1d1e2b] bg-opacity-15  hover:bg-white/20"
             aria-label="Region"
           >
             <img

@@ -12,7 +12,7 @@ export const fixturesSample = [
       "https://r2.thesportsdb.com/images/media/league/badge/epl.png",
     strSeason: "2025-2026",
     strHomeTeam: "Liverpool",
-    strAwayTeam: "Wolves",
+    strAwayTeam: "Swansea",
     intHomeScore: "2",
     intAwayScore: "1",
     intRound: "28",
@@ -24,7 +24,7 @@ export const fixturesSample = [
       "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/250px-Liverpool_FC.svg.png",
     idAwayTeam: "133602",
     strAwayTeamBadge:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Wolverhampton_Wanderers_FC_crest.svg/1280px-Wolverhampton_Wanderers_FC_crest.svg.png",
+      "https://static.vecteezy.com/system/resources/previews/027/011/152/non_2x/swansea-city-club-logo-black-symbol-premier-league-football-abstract-design-illustration-free-vector.jpg",
     strVenue: "Emirates Stadium",
     strCountry: "England",
     strStatus: "Live",

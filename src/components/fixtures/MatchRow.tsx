@@ -45,7 +45,15 @@ export default function MatchRow({
     return () => clearInterval(interval);
   }, [isLive]);
   const isFinished = statusColor === "red";
-
+  function LiveIndicator() {
+    return (
+      <div className=" flex mt-2 items-center">
+        <div className=" left-[3px]  h-[2px] w-6 -translate-y-1/2">
+          <div className="h-full w-full rounded-full bg-[var(--accent)] animate-live-sweep" />
+        </div>
+      </div>
+    );
+  }
   const borderStyle = isLive
     ? "border-l-[var(--accent)] "
     : isFinished
@@ -80,9 +88,7 @@ export default function MatchRow({
             {isLive ? `${minute}'` : statusLabel}
           </div>
 
-          {isLive && (
-            <div className="mt-2 h-0.5 w-4  bg-[var(--accent)] animate__animated  animate__slideOutRight animate__delay-1s	1s animate__infinite"></div>
-          )}
+          {isLive && <LiveIndicator />}
         </div>
 
         <div className="flex w-full items-center justify-between gap-4">
