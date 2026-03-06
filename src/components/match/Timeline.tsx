@@ -1,6 +1,6 @@
 import {
   BriefcaseMedical,
-  Flag,
+  FlagTriangleRight,
   MoveDown,
   MoveUp,
   Volleyball,
@@ -35,7 +35,7 @@ function Icon({ type }: { type: TimelineType }) {
   if (type === "sub")
     return (
       <span className="text-white/90">
-        <Volleyball className="h-3 w-auto text-[var(--accent)]" />
+        <Volleyball className="h-4 w-auto text-[var(--accent)]" />
       </span>
     );
   if (type === "yellow") return <span className="text-[var(--yellow)]">■</span>;
@@ -60,7 +60,7 @@ https://cdn-icons-png.flaticon.com/512/18164/18164650.png
   if (type === "corner")
     return (
       <span className="text-white/60">
-        <Flag className="h-3 w-auto" />
+        <FlagTriangleRight className="h-4 w-auto" />
       </span>
     );
 
