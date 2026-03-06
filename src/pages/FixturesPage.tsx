@@ -46,7 +46,6 @@ export default function FixturesPage() {
 
   const [filter, setFilter] = useState<FilterKey>("all");
   const [favorites] = useState<Record<string, boolean>>({});
-
   const events = useMemo(() => {
     const list = (data as any)?.events ?? (data as any)?.event ?? [];
     return Array.isArray(list) ? list : [];

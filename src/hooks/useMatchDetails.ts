@@ -1,64 +1,39 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { endpoints } from "../api/endpoints";
-import { fetchJson } from "../api/client";
-import { MATCH_SAMPLE } from "../mock/fixtures.sample";
-
-type MatchDetailsResponse = { events: any[] | null };
-
-const USE_MOCK = true;
 
 export function useMatchDetails(eventId: string) {
-  const [data, setData] = useState<MatchDetailsResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState<unknown>(null);
-
-  const abortRef = useRef<AbortController | null>(null);
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
+  const [error, setErrorObj] = useState<any>(null);
 
   useEffect(() => {
-    if (!eventId) return;
+    let cancelled = false;
 
-    // MOCK MODE
-    if (USE_MOCK) {
-      setIsLoading(true);
-
-      setTimeout(() => {
-        setData(MATCH_SAMPLE);
-        setIsLoading(false);
-      }, 300);
-
-      return;
-    }
-
-    // API MODE
-    abortRef.current?.abort();
-    const ac = new AbortController();
-    abortRef.current = ac;
-
-    setIsLoading(true);
-
-    (async () => {
+    async function run() {
       try {
-        setIsError(false);
-        setError(null);
+        setLoading(true);
+        setError(false);
 
-        const res = await fetchJson<MatchDetailsResponse>(
-          endpoints.lookupEvent(eventId),
-          ac.signal,
-        );
+        const res = await fetch(endpoints.matchDetails(eventId));
+        const json = await res.json();
 
-        setData(res);
+        if (!cancelled) setData(json);
       } catch (e) {
-        if ((e as any)?.name !== "AbortError") {
-          setIsError(true);
-          setError(e);
+        if (!cancelled) {
+          setError(true);
+          setErrorObj(e);
         }
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setLoading(false);
       }
-    })();
+    }
 
-    return () => ac.abort();
+    if (eventId) run();
+
+    return () => {
+      cancelled = true;
+    };
   }, [eventId]);
 
   return { data, isLoading, isError, error };

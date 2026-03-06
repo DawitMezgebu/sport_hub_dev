@@ -45,7 +45,7 @@ function Icon({ type }: { type: TimelineType }) {
       <span className="text-[var(--danger)]">
         <img
           src="
-https://image.pngaaa.com/980/5559980-middle.png
+https://cdn-icons-png.flaticon.com/512/18164/18164650.png
   "
           className=""
         />
@@ -99,6 +99,19 @@ function MinutePill({ label, active }: { label: string; active?: boolean }) {
 export default function TimelineRow({ e }: { e: TimelineEvent }) {
   const left = e.side === "home";
   const right = e.side === "away";
+  const center = e.side === "center";
+
+  if (center) {
+    return (
+      <div className="flex items-center gap-3 py-3 text-xs text-white/50">
+        <div className="flex-1 border-t border-white/10" />
+        <span className="px-2 tracking-wide whitespace-nowrap">
+          {e.minuteLabel}
+        </span>
+        <div className="flex-1 border-t border-white/10" />
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-[1fr_80px_1fr] items-center py-3">
@@ -108,7 +121,6 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
       >
         {left ? (
           <div className="flex items-center gap-2">
-            {/* text */}
             <div className="space-y-1 text-right">
               <div className="text-sm font-semibold text-white/90">
                 {e.primary}
@@ -121,6 +133,8 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
             <div className="w-6 ">
               <Icon type={e.type} />
             </div>
+
+            <div className="h-[2px] w-4 rounded-full bg-white/10" />
           </div>
         ) : (
           <div className="h-[1px]" />
@@ -141,11 +155,13 @@ export default function TimelineRow({ e }: { e: TimelineEvent }) {
       >
         {right ? (
           <div className="flex items-center gap-2">
+            {/* connector line */}
+            <div className="h-[2px] w-4 rounded-full bg-white/10" />
+
             <div className="w-6 ">
               <Icon type={e.type} />
             </div>
 
-            {/* text */}
             <div className="space-y-1 text-left">
               <div className="text-sm font-semibold text-white/90">
                 {e.primary}

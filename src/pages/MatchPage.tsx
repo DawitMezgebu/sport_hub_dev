@@ -13,15 +13,18 @@ export default function MatchPage() {
   const { data, isLoading, isError, error } = useMatchDetails(eventId!);
 
   const event = useMemo(() => {
-    const list = (data as any)?.events ?? [];
+    const list = data?.events ?? [];
     return Array.isArray(list) ? list[0] : null;
   }, [data]);
 
-  const home = String(event?.strHomeTeam ?? "Home");
-  const away = String(event?.strAwayTeam ?? "Away");
-  const league = String(event?.strLeague ?? "League");
+  const home = event?.strHomeTeam ?? "Home";
+  const away = event?.strAwayTeam ?? "Away";
+
   const hs = event?.intHomeScore ?? "";
   const as = event?.intAwayScore ?? "";
+
+  const league = event?.strLeague ?? "League";
+
   const dateLabel = event?.dateEvent
     ? new Date(event.dateEvent)
         .toLocaleDateString(undefined, {
@@ -69,6 +72,7 @@ export default function MatchPage() {
       },
     ];
   }, [event, hs, as]);
+  
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg)] text-white">
@@ -123,8 +127,9 @@ export default function MatchPage() {
                 <div className="text-center">
                   <div className="mx-auto h-12 w-12 rounded-full ">
                     <img
-                      src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/250px-Arsenal_FC.svg.png"
+                      src="https://static.vecteezy.com/system/resources/previews/027/011/152/non_2x/swansea-city-club-logo-black-symbol-premier-league-football-abstract-design-illustration-free-vector.jpg"
                       alt="club b"
+                      className="mx-auto h-16 w-auto rounded-full "
                     />
                   </div>
                   <div className="mt-6 text-[14px] font-medium">{away}</div>

@@ -39,12 +39,20 @@ export const FALLBACK_TIMELINE: TimelineEvent[] = [
     primary: "3rd corner",
   },
   {
-    id: "67",
+    id: "67-home",
     minuteLabel: "67'",
     side: "home",
     type: "goal",
     primary: "Rice",
     secondary: "Zubimendi",
+  },
+  {
+    id: "67-away",
+    minuteLabel: "67'",
+    side: "away",
+    type: "goal",
+    primary: "Frimpong",
+    secondary: "Robertson",
   },
   {
     id: "66",
