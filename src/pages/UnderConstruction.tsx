@@ -9,7 +9,7 @@ export default function UnderConstructionPage() {
       <main className="flex min-h-[calc(100vh-64px)] items-center justify-center px-6">
         <div className="w-full max-w-[520px] text-center">
           <img
-            src="https://daveportfolios.netlify.app/portfolio/sign-in.svg"
+            src="https://yefil.com/public/img/auth/chart.png"
             alt="Under construction illustration"
             className="mx-auto mb-6"
           />
