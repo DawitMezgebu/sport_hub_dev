@@ -119,7 +119,6 @@ export function normalizeMatchEvents(raw: any): TimelineEvent[] {
     });
   }
 
-  // Sort descending by minute
   return events.sort(
     (a, b) => parseMinute(b.minuteLabel) - parseMinute(a.minuteLabel),
   );
